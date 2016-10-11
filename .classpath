@@ -7,5 +7,7 @@
 	<classpathentry kind="lib" path="lib/twitter4j-examples-4.0.4.jar"/>
 	<classpathentry kind="lib" path="lib/twitter4j-media-support-4.0.4.jar"/>
 	<classpathentry kind="lib" path="lib/twitter4j-stream-4.0.4.jar"/>
-	<classpathentry kind="output" path="bin1"/>
+	<classpathentry kind="lib" path="lib/facebook4j-core-2.4.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Rafael Gaspar/Google Drive/USP/6º Semestre/RP II/RP2/lib/json_simple-1.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
 </classpath>
