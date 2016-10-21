@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 class Preprocessamento{
 
-	public static void main (String args[]){
+	/*public static void main (String args[]){
 		
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Digite algo que o fara se arrepender depois:");
@@ -13,7 +13,7 @@ class Preprocessamento{
 			extrairInfo(line);
 		}
 
-	}
+	}*/
 
 	public static void extrairInfo(String line){
 
