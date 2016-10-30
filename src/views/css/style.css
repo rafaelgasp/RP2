@@ -6,10 +6,16 @@ html, body {
 	min-width: 800px;
 	
 	background: #FFFFFF; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(45deg, #c0deed 0%, #00aced 100%); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(45deg, #c0deed 0%, #00aced 100%); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(45deg, #c0deed 0%, #00aced 100%); /* For Firefox 3.6 to 15 */
+    background: -webkit-linear-gradient(45deg, #bddfeb 0%, #9bc2cf 100%); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(45deg, #bddfeb 0%, #9bc2cf 100%); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(45deg, #bddfeb 0%, #9bc2cf 100%); /* For Firefox 3.6 to 15 */
     background: linear-gradient(45deg, #bddfeb, #9bc2cf); /* Standard syntax */
+}
+
+option {
+	background-color: #9bc2cf;
+	
+	border: none;
 }
 
 @font-face {
@@ -170,4 +176,44 @@ html, body {
 .btn-opcao:hover {
 	color: #0084b4;
 	background-color: #ffffff;
+}
+
+.lista {
+	height: 5%;
+	width: 30%;
+	margin: auto;
+	
+	margin-bottom: 1%;
+	
+	border-bottom: 2px solid #FFFFFF;
+}
+
+.lbl-serie {
+	height: 100%;
+	width: 40%;
+	
+	float: left;
+	font-family: 'bariol';
+	font-size: 20px;
+	font-weight: bold;
+	
+	color: #FFFFFF;
+	
+	text-align: center;
+}
+
+.cmb-serie {
+	height: 100%;
+	width: 57.5%;
+	margin-left: 2.5%;
+	
+	background-color: transparent;
+	font-size: 20px;
+	font-family: 'bariol';
+	
+	color: #FFFFFF;
+	
+	border: none;
+	
+	text-align: center;
 }
