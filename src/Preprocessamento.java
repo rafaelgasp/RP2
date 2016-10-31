@@ -15,7 +15,8 @@ class Preprocessamento{
 
 	}*/
 
-	public static void extrairInfo(String line){
+	public static String extrairInfo(String line){
+		line = line.replace("\n", " ").replace("\r", " ");
 
 		String usertag = "((\\s)?(@[\\w]+))";
 		String hashtag = "((\\s)?(#[\\w]+))";
@@ -38,27 +39,11 @@ class Preprocessamento{
 		l.add(regexPos); l.add(regexPosInv);
 		l.add(regexNeg); l.add(regexNegInv);
 
-		for(int i = 0 ; i < l.size(); i++){
-
-			// Create a Pattern object
-			Pattern r = Pattern.compile(l.get(i));
-
-			// Now create matcher object.
-			Matcher m = r.matcher(line);
-		
-			if(m.find()){
-				
-				//substituir por leitura de arquivo
-				if(i==0) System.out.println(line.replace(line,"USERTAG"));
-				else if(i==1) System.out.println(line.replace(line,"HASHTAG"));
-				else if(i==2) System.out.println(line.replace(line,"URL"));
-				else System.out.println(line.replace(line,"EMOTIONICON"));
-
-				break;
-			}
-			
+		for(int i = 0 ; i < l.size(); i++){		
+			line = line.replaceAll(l.get(i), " ");
 		}
-		//System.out.println(line);
+		
+		return (line);
 	}
 }
 

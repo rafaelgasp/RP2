@@ -13,27 +13,6 @@ public class NLP {
     public static void init() {
         pipeline = new StanfordCoreNLP("MyPropFile.properties");
     }
-    
-    public static int findSentiment2(String line) {
- 
-        int mainSentiment = 0;
-        if (line != null && line.length() > 0) {
-            int longest = 0;
-            Annotation annotation = pipeline.process(line);
-            for (CoreMap sentence : annotation.get(CoreAnnotations.SentencesAnnotation.class)) {
-                Tree tree = sentence.get(SentimentCoreAnnotations.AnnotatedTree.class);
-                int sentiment = RNNCoreAnnotations.getPredictedClass(tree);
-                String partText = sentence.toString();
-                if (partText.length() > longest) {
-                    mainSentiment = sentiment;
-                    longest = partText.length();
-                }
- 
-            }
-        }
-        
-        return mainSentiment; 
-    }
 
     public static int findSentiment(String tweet) {
 
@@ -41,10 +20,8 @@ public class NLP {
         if (tweet != null && tweet.length() > 0) {
             int longest = 0;
             Annotation annotation = pipeline.process(tweet);
-            for (CoreMap sentence : annotation
-                    .get(CoreAnnotations.SentencesAnnotation.class)) {
-                Tree tree = sentence
-                        .get(SentimentCoreAnnotations.AnnotatedTree.class);
+            for (CoreMap sentence : annotation.get(CoreAnnotations.SentencesAnnotation.class)) {
+                Tree tree = sentence.get(SentimentCoreAnnotations.AnnotatedTree.class);
                 int sentiment = RNNCoreAnnotations.getPredictedClass(tree);
                 String partText = sentence.toString();
                 if (partText.length() > longest) {

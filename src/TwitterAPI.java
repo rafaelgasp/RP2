@@ -1,9 +1,15 @@
+import twitter4j.FilterQuery;
 import twitter4j.Query;
 import twitter4j.QueryResult;
+import twitter4j.StallWarning;
 import twitter4j.Status;
+import twitter4j.StatusDeletionNotice;
+import twitter4j.StatusListener;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
+import twitter4j.TwitterStream;
+import twitter4j.TwitterStreamFactory;
 import twitter4j.conf.ConfigurationBuilder;
 
 import java.io.BufferedReader;
@@ -13,6 +19,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -78,30 +85,86 @@ public class TwitterAPI {
         return translatedText;
 	}
 	
-	public static void twitter(){
+	public static ArrayList<Status> getTweets(Query query){
+		System.out.println("Getting tweets...");
+		
+		ArrayList<Status> tweets = new ArrayList<Status>();
+		
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 		cb.setDebugEnabled(true)
 		    .setOAuthConsumerKey(TWITTER_CONSUMER_KEY)
 		    .setOAuthConsumerSecret(TWITTER_SECRET_KEY)
 		    .setOAuthAccessToken(TWITTER_ACCESS_TOKEN)
 		    .setOAuthAccessTokenSecret(TWITTER_ACCESS_TOKEN_SECRET);
+		
 		TwitterFactory tf = new TwitterFactory(cb.build());
 		Twitter twitter = tf.getInstance();
+		
 		try {
-		    Query query = new Query("Palmeiras");
 		    QueryResult result;
 		    do {
 		        result = twitter.search(query);
-		        List<Status> tweets = result.getTweets();
-		        for (Status tweet : tweets) {
-		            //System.out.println("@" + tweet.getUser().getScreenName() + " - " + tweet.getText());
-		        }
+		        List<Status> list = result.getTweets();
+		        tweets.addAll(list);
+		        System.out.println(tweets.size() + "...");
 		    } while ((query = result.nextQuery()) != null);
-		    System.exit(0);
 		} catch (TwitterException te) {
 		    te.printStackTrace();
 		    System.out.println("Failed to search tweets: " + te.getMessage());
-		    System.exit(-1);
+		    return null;
 		}
+		
+		return tweets;
+	}
+	
+	public static void getTweetStream(){
+		ConfigurationBuilder cb = new ConfigurationBuilder();
+		cb.setDebugEnabled(true)
+		    .setOAuthConsumerKey(TWITTER_CONSUMER_KEY)
+		    .setOAuthConsumerSecret(TWITTER_SECRET_KEY)
+		    .setOAuthAccessToken(TWITTER_ACCESS_TOKEN)
+		    .setOAuthAccessTokenSecret(TWITTER_ACCESS_TOKEN_SECRET);
+		
+		TwitterStream twitterStream = new TwitterStreamFactory(cb.build()).getInstance();
+		
+		StatusListener listener = new StatusListener(){
+	        public void onStatus(Status status) {
+	            //if (status.getText().contains)
+	            if(status.getUser().getLang().equalsIgnoreCase("pt")
+	                    || status.getUser().getLang().equalsIgnoreCase("pt_BR")) {
+	                System.out.println(status.getUser().getName() + " :: " + status.getText() + " :: " + status.getGeoLocation());
+	            }
+	        }
+	        public void onDeletionNotice(StatusDeletionNotice statusDeletionNotice) {}
+	        public void onTrackLimitationNotice(int numberOfLimitedStatuses) {}
+	        public void onException(Exception ex) {
+	            ex.printStackTrace();
+	        }
+	        public void onScrubGeo(long arg0, long arg1) {
+
+	        }
+	        public void onStallWarning(StallWarning arg0) {
+
+	        }
+	    };
+		
+	    twitterStream.addListener(listener);
+	    FilterQuery query = new FilterQuery();
+	    // São Paulo BR
+	    double lat = -23.5;
+	    double lon = -46.6;
+
+	    double lon1 = lon - .5;
+	    double lon2 = lon + .5;
+	    double lat1 = lat - .5;
+	    double lat2 = lat + .5;
+
+	    double box[][] = {{lon1, lat1}, {lon2, lat2}};
+
+	    query.locations(box);
+
+	    String[] trackArray = {"The Voice Brasil"}; 
+	    query.track(trackArray);
+	    twitterStream.filter(query);
 	}
 }

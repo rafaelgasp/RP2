@@ -12,15 +12,15 @@ import edu.stanford.nlp.trees.TreebankLanguagePack;
 
 public class Classificacao  {
 	
-	public static void main(String[] args) {
-
-	   // String parserModel = "edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz";
-	   // classifica(parserModel, "teste.txt");
-		
-		NLP.init();
-		String tweet = "I feel very good today";
-		System.out.println(tweet + " " +  NLP.findSentiment2(tweet));
-	}
+//	public static void main(String[] args) {
+//
+//	   // String parserModel = "edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz";
+//	   // classifica(parserModel, "teste.txt");
+//		
+//		NLP.init();
+//		String tweet = "I feel very good today";
+//		System.out.println(tweet + " " +  NLP.findSentiment(tweet));
+//	}
 	
 	public static void classifica(String parserModel, String filename){
 	    LexicalizedParser lp = LexicalizedParser.loadModel(parserModel);
