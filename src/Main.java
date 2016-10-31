@@ -19,24 +19,26 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Query query = new Query();
-		query.setQuery("The Voice Brasil");	
+		query.setQuery("TheVoiceBrasil");	
 		query.since("2016-10-26");
 		query.until("2016-10-28");
+		query.count(100);
+		query.resultType(ResultType.recent);
 	
 		ArrayList<Status> results = TwitterAPI.getTweets(query);
 		HashSet<Status> resultSet = new HashSet<Status>(results);
 		
 		try {
-			exportResults(resultSet);
+			exportResults(resultSet, "resultados_RECENT_THEVOICEBR.csv");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
 	}
 	
-	public static void exportResults(HashSet<Status> results) throws IOException{
+	public static void exportResults(HashSet<Status> results, String filename) throws IOException{
 		System.out.println("Exporting tweets...");
-		FileWriter fw = new FileWriter("results_tweet.csv");
+		FileWriter fw = new FileWriter(filename);
 		
 		String header = "Tweet;Tradução;Sentimento;Favoritos;Retweets;Data;Location;" + System.getProperty("line.separator");
 		fw.write(header);
