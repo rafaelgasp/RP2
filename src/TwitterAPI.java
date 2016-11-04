@@ -27,6 +27,10 @@ import com.rmtheis.yandtran.language.Language;
 import com.rmtheis.yandtran.translate.Translate;
 import com.sun.xml.internal.bind.v2.runtime.output.Encoded;
 
+import me.jhenrique.manager.TweetManager;
+import me.jhenrique.manager.TwitterCriteria;
+import me.jhenrique.model.Tweet;
+
 public class TwitterAPI {
 	private static final String TWITTER_CONSUMER_KEY = "di1tNQeO3Evfr0WVtM6G7rhLk";
 	private static final String TWITTER_SECRET_KEY = "yBdmCqtEvJTjGvv5oxXDqAoL3Me8LazVuDTqao3sI5aQHhgnGV";
@@ -113,6 +117,51 @@ public class TwitterAPI {
 		    System.out.println("Failed to search tweets: " + te.getMessage());
 		    return null;
 		}
+		
+		return tweets;
+	}
+	
+	public static List<Tweet> getTweets(String query, int max){
+		TwitterCriteria criteria = TwitterCriteria.create()
+	                .setQuerySearch(query)
+	                .setSince("2016-10-26")
+	                .setUntil("2016-10-28")
+	                .setMaxTweets(max); 	
+	    return TweetManager.getTweets(criteria);
+	}
+	
+
+	public static ArrayList<Status> getTweets(Query query, int numberOfTweets){
+		System.out.println("Getting tweets...");
+		
+		ArrayList<Status> tweets = new ArrayList<Status>();
+		
+		ConfigurationBuilder cb = new ConfigurationBuilder();
+		cb.setDebugEnabled(true)
+		    .setOAuthConsumerKey(TWITTER_CONSUMER_KEY)
+		    .setOAuthConsumerSecret(TWITTER_SECRET_KEY)
+		    .setOAuthAccessToken(TWITTER_ACCESS_TOKEN)
+		    .setOAuthAccessTokenSecret(TWITTER_ACCESS_TOKEN_SECRET);
+		
+		Twitter twitter = new TwitterFactory(cb.build()).getInstance();
+		long lastID = Long.MAX_VALUE;
+		while (tweets.size () < numberOfTweets) {
+			if (numberOfTweets - tweets.size() > 100)
+		      query.setCount(100);
+		    else 
+		      query.setCount(numberOfTweets - tweets.size());
+		    try {
+			      QueryResult result = twitter.search(query);
+			      tweets.addAll(result.getTweets());
+			      System.out.println("Pegou " + tweets.size() + " tweets");
+			      for (Status t: tweets) 
+			        if(t.getId() < lastID) lastID = t.getId();
+	
+		    }catch (TwitterException te) {
+		    	System.out.println("Couldn't connect: " + te);
+		    }; 
+		    query.setMaxId(lastID-1);
+		  }
 		
 		return tweets;
 	}
