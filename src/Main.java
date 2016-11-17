@@ -48,7 +48,7 @@ public class Main {
 		
 		int i = 0;
 		for (Tweet tweet : results){
-			String t = Preprocessamento.extrairInfo(tweet.getText());
+			String t = Preprocessamento.preprocessar(tweet.getText());
 			String translated = TwitterAPI.yandexTranslation(t);
 			
 			String line = t + ";";
@@ -86,7 +86,7 @@ public class Main {
 		
 		int i = 0;
 		for (Status tweet : results){
-			String t = Preprocessamento.extrairInfo(tweet.getText());
+			String t = Preprocessamento.preprocessar(tweet.getText());
 			String translated = TwitterAPI.yandexTranslation(t);
 			
 			String line = t + ";";
