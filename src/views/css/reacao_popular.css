@@ -1,0 +1,166 @@
+html, body {
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	
+	overflow: hidden;
+	
+	background-color: #f4f4f4;
+}
+
+@font-face {
+ font-family: 'Pier Sans';
+ src: url("../fonts/pier-regular.otf") format("opentype");
+}
+
+@font-face {
+ font-family: 'bariol';
+ src: url('../fonts/Bariol.woff') format('woff');
+}
+
+.metade {
+	height: 100%;
+	width: 50%;
+	float: left;
+}
+
+.card {
+	height: 90%;
+	width: 90%;
+	
+	margin: 5%;
+	
+	box-shadow: 0px 0px 10px #666666;
+	
+	background-color: #ffffff;
+	display:block;
+}
+
+.emoction {
+	width: 60%;
+	height: 60%;
+	
+	margin-top: 10%;
+	margin-left: 20%;
+
+	display:inline-block;
+	
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-image: url(../imagens/emo-3.png);
+}
+
+.nome-emoction {
+	width: 60%;
+	height: 15%;
+	
+	margin-top: 5%;
+	margin-left: 20%;
+	
+	text-align: center;
+	font-family: 'bariol';
+	font-size: 28px;
+	
+	display:inline-block;
+}
+
+.table {
+	width: 70%;
+	height: 90%;
+	
+	margin-left: 15%;
+	margin-top: 2.5%;
+	
+	display:inline-block;
+}
+
+.row {
+	width: 100%;
+	height: 20%;
+	background-color: #f4f4f4;
+	text-align: center;
+	
+	display:inline-block;
+	
+	margin: 0px;
+	padding: 0px;
+	
+	font-family: 'bariol';
+	font-size: 28px;
+	
+	transition: 0.3s all ease;
+}
+
+.row:hover {
+	transform: scale(1.02, 1.02);
+	
+	background-color: #f3f3ff;
+	font-weight: bold;
+	color: #4bb44b;
+}
+
+.row:hover .icone-row {
+	background-color: #e4e4f4;
+}
+
+.icone-row {
+	float: left;
+	
+	height: 100%;
+	width: 30%;
+	
+	background-position: center;
+	background-size: 50%;
+	background-repeat: no-repeat;
+	
+	display:inline-block;
+	
+	transition: 0.3s all ease;
+}
+
+.valor-row {
+	float: left;
+	
+	height: 40%;
+	width: 40%;
+	
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	
+	display:inline-block;
+}
+
+.porcent-row {
+	float: left;
+	
+	height: 40%;
+	width: 30%;
+	
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	
+	display:inline-block;
+}
+
+#emo-1 {
+	background-image: url(../imagens/emo-1.png);
+}
+
+#emo-2 {
+	background-image: url(../imagens/emo-2.png);
+}
+
+#emo-3 {
+	background-image: url(../imagens/emo-3.png);
+}
+
+#emo-4 {
+	background-image: url(../imagens/emo-4.png);
+}
+
+#emo-5 {
+	background-image: url(../imagens/emo-5.png);
+}
