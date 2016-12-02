@@ -6,6 +6,18 @@ html, body {
 	overflow: hidden;
 	
 	background-color: #f4f4f4;
+	
+	animation: show;
+	animation-duration: 0.5s;
+}
+
+@keyframes show {
+	from {
+		opacity: 0;
+	}
+    to {
+		opacity: 1;
+	}
 }
 
 @font-face {
@@ -48,7 +60,7 @@ html, body {
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: contain;
-	background-image: url(../imagens/emo-3.png);
+	background-image: url(../imagens/emo-4.png);
 }
 
 .nome-emoction {
