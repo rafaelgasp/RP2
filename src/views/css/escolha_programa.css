@@ -1,0 +1,78 @@
+html, body {
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	
+	overflow: hidden;
+	
+	animation: show;
+	animation-duration: 0.5s;
+	
+	background-color: #f4f4f4;
+}
+
+@keyframes show {
+	from {
+		opacity: 0;
+	}
+    to {
+		opacity: 1;
+	}
+}
+
+@keyframes up-down {
+    0% {
+		transform: translateY(0%);
+	}
+	50% {
+		transform: translateY(10%);
+	}
+    100% {
+		transform: translateY(0%);
+	}
+}
+
+@font-face {
+ font-family: 'Pier Sans';
+ src: url("../fonts/pier-regular.otf") format("opentype");
+}
+
+@font-face {
+ font-family: 'bariol';
+ src: url('../fonts/Bariol.woff') format('woff');
+}
+
+.box-pointer {
+	width: 40%;
+	margin-left: 30%;
+	margin-top: 1%;
+	
+	height: 15%;
+
+	display: block;
+}
+
+.pointer-up {
+	background-image: url(../imagens/up.png);
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	width: 90%;
+	height:90%;
+	
+	margin: auto;
+	
+	animation-name: up-down;
+	animation-duration: 1.25s;
+	animation-iteration-count: infinite;
+}
+
+.aviso {
+	width: 40%;
+	margin: auto;
+	
+	font-family: 'bariol';
+	font-size: 22px;
+	text-align: center;
+	color: #567BA0;
+}

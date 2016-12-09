@@ -63,6 +63,21 @@ html, body {
 	background-image: url(../imagens/emo-2.png);
 }
 
+.emoction-2 {
+	width: 60%;
+	height: 60%;
+	
+	margin-top: 10%;
+	margin-left: 20%;
+
+	display:inline-block;
+	
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-image: url(../imagens/alta.png);
+}
+
 .nome-emoction {
 	width: 60%;
 	height: 15%;

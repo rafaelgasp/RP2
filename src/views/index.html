@@ -17,7 +17,7 @@
 			<div class="conteudo">
 				<div class="lista">
 					<p class="lbl-serie">Escolha uma série:</p>
-					<select class="cmb-serie">
+					<select class="cmb-serie" id="lista-programa" onchange="proximaEtapa()">
 						<option>Selecione...</option>
 						<option>Master Chef Profissionais</option>
 						<option>Polícia 24h</option>
@@ -27,7 +27,7 @@
 				</div>
 				
 				<div class="box">
-					<iframe src="" id="telao"></iframe>
+					<iframe src="relatorios/escolha_programa.html" id="telao"></iframe>
 				</div>
 			</div>
 			<div class="rodape">
@@ -38,10 +38,10 @@
 					<input type="button" onclick="go('relatorios/dados_coletados.html')" class="btn-opcao" id="dados" value="Dados Coletados"></input>
 				</div>
 				<div class="opcao">
-					<input type="button" onclick="go('relatorios/reacao_popular.html')" class="btn-opcao" id="graficos" value="Gráficos"></input>
+					<input type="button" onclick="go('relatorios/graficos.html')" class="btn-opcao" id="graficos" value="Gráficos"></input>
 				</div>
 				<div class="opcao">
-					<input type="button" onclick="go('relatorios/reacao_popular.html')" class="btn-opcao" id="comparativo" value="Comparativo"></input>
+					<input type="button" onclick="go('relatorios/comparativo.html')" class="btn-opcao" id="comparativo" value="Comparativo"></input>
 				</div>
 			</div>
 		</div>
